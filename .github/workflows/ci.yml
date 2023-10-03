@@ -7,8 +7,8 @@ on:
       - '*-test'
   pull_request:
     branches:
-#      - main
-      - '*-test'
+      - main
+#      - '*-test'
 
 env:
   NODE_ENV: github
