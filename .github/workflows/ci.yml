@@ -3,15 +3,12 @@ name: Node.js test
 on:
   push:
     branches:
-#      - main
+      - main
       - '*-test'
-#  pull_request:
-#    branches:
-#      - main
-#      - '*-test'
-  pull_request_target:
+  pull_request:
     branches:
       - main
+#      - '*-test'
 
 env:
   NODE_ENV: github
