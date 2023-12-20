@@ -114,9 +114,11 @@ const adminController = {
   patchUser: (req, res, next) => {
     return User.findByPk(req.params.id)
       .then(user => {
+        // 修改判斷最高權限 admin email 的邏輯
+        const highestPrivilegeEmails = ['root@example.com']
         if (!user) throw new Error("User didn't found!")
 
-        if (user.email === 'root@example.com') {
+        if (highestPrivilegeEmails.includes(user.email)) {
           req.flash('error_messages', '禁止變更 root 權限')
           return res.redirect('back')
         }
