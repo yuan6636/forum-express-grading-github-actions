@@ -1,0 +1,20 @@
+<div class="card mb-3 mx-auto" style="max-width: 100vw;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      {{#if user.image}}
+      <img src="{{user.image}}" class="img-fluid rounded-start" alt="user-image" width="300px" height="300px" style="transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
+      {{else}}
+      <img src="https://via.placeholder.com/300" class="img-fluid rounded-start" alt="user-image" width="300px" height="300px" style="transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
+      {{/if}}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{user.name}}</h5>
+        <p class="card-text">
+          <span>{{user.email}}</span>
+        </p>
+        <a class="btn btn-primary" href="/users/{{user.id}}/edit">edit</a>
+      </div>
+    </div>
+  </div>
+</div>
