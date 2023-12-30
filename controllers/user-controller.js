@@ -46,8 +46,21 @@ const userController = {
     })
       .then(user => {
         if (!user) throw new Error("User didn't exist!")
+        const filteredComments = user.toJSON().Comments.reduce((accumulator, currentComment) => {
+          const duplicatedRest = accumulator.some(comment => comment.Restaurant.id === currentComment.Restaurant.id)
 
-        res.render('users/profile', { user: user.toJSON() })
+          if (!duplicatedRest) {
+            accumulator.push(currentComment)
+          }
+          return accumulator
+        }, [])
+        res.render('users/profile', {
+          user: user.toJSON(),
+          favoritedRestaurants: req.user.FavoritedRestaurants,
+          followings: req.user.Followings,
+          followers: req.user.Followers,
+          filteredComments
+        })
       })
       .catch(err => next(err))
   },

@@ -13,20 +13,67 @@
         <p class="card-text">
           <span>{{user.email}}</span>
         </p>
-        <span><strong>{{user.Comments.length}} </strong>已評論餐廳</span>
+        <div class="d-flex flex-column gap-1">
+          <span><strong>{{filteredComments.length}} </strong>已評論餐廳</span>
+          <span><strong>{{favoritedRestaurants.length}} </strong>收藏的餐廳</span>
+          <span><strong>{{followings.length}} </strong>followings(追蹤者)</span>
+          <span><strong>{{followers.length}} </strong>followers(追隨者)</span>
+        </div>
       </div>
-      <a class="btn btn-primary ms-3 mt-5" href="/users/{{user.id}}/edit">edit</a>
+      <a class="btn btn-primary ms-3 mt-2" href="/users/{{user.id}}/edit">edit</a>
     </div>
   </div>
 </div>
 
-<div class="card">
-  <h5 class="card-header fw-bold">{{user.Comments.length}} 已評論餐廳</h5>
-  <div class="card-body text-start">
-    {{#each user.Comments}}
-    <a href="/restaurants/{{this.Restaurant.id}}" style="text-decoration: none;">
-      <img class="m-3" src="{{this.Restaurant.image}}" width="100px" height="100px">
-    </a>
-    {{/each}}
+<div class="d-flex flex-row">
+  <div class="col-4">
+    <div class="card mb-3 me-4">
+      <h5 class="card-header fw-bold">{{followings.length}} followings(追蹤者)</h5>
+      <div class="card-body text-start">
+        {{#each followings}}
+        <a href="/restaurants/{{this.id}}" style="text-decoration: none;">
+          <img class="mx-2" src="{{this.image}}" width="100px" height="100px">
+        </a>
+        {{/each}}
+      </div>
+    </div>
+    <div class="card me-4">
+      <h5 class="card-header fw-bold">{{followers.length}} followers(追隨者)</h5>
+      <div class="card-body text-start">
+        {{#each followers}}
+        <a href="/restaurants/{{this.id}}" style="text-decoration: none;">
+          <img class="mx-2" src="{{this.image}}" width="100px" height="100px">
+        </a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <div class="card mb-3">
+      <h5 class="card-header fw-bold">{{filteredComments.length}} 已評論餐廳</h5>
+      <div class="card-body text-start">
+        {{#each filteredComments}}
+        <a href="/restaurants/{{this.Restaurant.id}}" style="text-decoration: none;">
+          <img class="mx-2" src="{{this.Restaurant.image}}" width="100px" height="100px">
+        </a>
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-header fw-bold">{{favoritedRestaurants.length}} 收藏的餐廳</h5>
+      <div class="card-body text-start">
+        {{#each favoritedRestaurants}}
+        <a href="/restaurants/{{this.id}}" style="text-decoration: none;">
+          <img class="mx-2" src="{{this.image}}" width="100px" height="100px">
+        </a>
+        {{/each}}
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+

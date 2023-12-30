@@ -51,7 +51,8 @@ const restaurantController = {
         { model: Comment, include: User },
         { model: User, as: 'FavoritedUsers' },
         { model: User, as: 'LikedUsers' }
-      ]
+      ],
+      order: [[{ model: Comment }, 'createdAt', 'DESC']]
     })
       .then(restaurant => {
         if (!restaurant) throw new Error("Restaurant didn't exist!")
